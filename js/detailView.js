@@ -46,7 +46,9 @@ class Detailview extends View {
 
   generateType2() {
     if (this.data.type2) {
-      return `<img class="card__body__type2" alt="Type 2" src="http://localhost/files/symbols/${this.data.type2}.png">`;
+      return `<img class="card__body__type2" alt="Type 2" src="https://raw.githubusercontent.com/santiagoospina21/pokedex-santy/master/img/symbols/${
+        this.data.type2[0].toUpperCase() + this.data.type2.slice(1)
+      }}">`;
     } else return "";
   }
 
@@ -67,7 +69,7 @@ class Detailview extends View {
     <h3 class="card__header__text">${
       this.data.type1[0].toUpperCase() + this.data.type1.slice(1)
     }${this.generateType2Text()}</h3>
-    <button class="card__header__button"><img src="http://localhost/files/shiny.png" alt="shiny " width="40px"> </button>
+    <button class="card__header__button"><img src="https://raw.githubusercontent.com/santiagoospina21/pokedex-santy/master/img/shiny.png" alt="shiny " width="40px"> </button>
     
     </div>
     
@@ -77,9 +79,9 @@ class Detailview extends View {
         this.data.image
       }" >
       </div> 
-      <div class="card__body__type1"><img class="card__body__type1" alt="Type 1" src="http://localhost/files/symbols/${
-        this.data.type1
-      }.png">
+      <div class="card__body__type1"><img class="card__body__type1" alt="Type 1" src="https://github.com/santiagoospina21/pokedex-santy/blob/master/img/symbols/${
+        this.data.type1[0].toUpperCase() + this.data.type1.slice(1)
+      }">
       
       ${this.generateType2()}
 
@@ -89,37 +91,37 @@ class Detailview extends View {
 
    <div class="card__footer">
     <div class="card__footer__stat">
-      <img class="card__footer__stat" alt="Pokemon_Ataque" src="http://localhost/files/hp.png" width="30px">
+      <img class="card__footer__stat" alt="Pokemon_Ataque" src="https://raw.githubusercontent.com/santiagoospina21/pokedex-santy/master/img/hp.png" width="30px">
       <h2 class="card__footer__stat">Hp</h2>
       <h2 class="both">${this.data.hp}</h2>
     </div>
     
     <div class="card__footer__stat">
-      <img class="card__footer__stat" alt="Pokemon_Ataque" src="http://localhost/files/Ataque.png" width="30px">
+      <img class="card__footer__stat" alt="Pokemon_Ataque" src="https://raw.githubusercontent.com/santiagoospina21/pokedex-santy/master/img/Ataque.png" width="30px">
       <h2 class="card__footer__stat">Atk</h2>
       <h2 class="both">${this.data.attack}</h2>
     </div>
     
     <div class="card__footer__stat">
-      <img class="card__footer__stat" alt="Pokemon_Defensa" src="http://localhost/files/Escudo.png" width="30px">
+      <img class="card__footer__stat" alt="Pokemon_Defensa" src="https://raw.githubusercontent.com/santiagoospina21/pokedex-santy/master/img/Escudo.png" width="30px">
       <h2 class="card__footer__stat">Def</h2>
       <h2 class="both">${this.data.defense}</h2>
     </div>
 
     <div class="card__footer__stat">
-      <img class="card__footer__stat" alt="Pokemon_Ataque_Especial" src="http://localhost/files/baculo.png" width="60px">
+      <img class="card__footer__stat" alt="Pokemon_Ataque_Especial" src="https://raw.githubusercontent.com/santiagoospina21/pokedex-santy/master/img/baculo.png" width="60px">
       <h2 class="card__footer__stat">Atk. Spe</h2>
       <h2 class="both" >${this.data.special_attack}</h2>
     </div>
 
     <div class="card__footer__stat">
-      <img class="card__footer__stat" alt="Pokemon_Defensa_Especial" src="http://localhost/files/Capa.png" width="30px">
+      <img class="card__footer__stat" alt="Pokemon_Defensa_Especial" src="https://raw.githubusercontent.com/santiagoospina21/pokedex-santy/master/img/Capa.png" width="30px">
       <h2 class="card__footer__stat"  >Def. Spe</h2>
       <h2 class="both" >${this.data.special_defense}</h2>
     </div>
 
     <div class="card__footer__stat">
-      <img class="card__footer__stat" alt="Pokemon_Defensa_Especial" src="http://localhost/files/Velocidad.png" width="30px">
+      <img class="card__footer__stat" alt="Pokemon_Defensa_Especial" src="https://raw.githubusercontent.com/santiagoospina21/pokedex-santy/master/img/Velocidad.png" width="30px">
       <h2 class="card__footer__stat">Spe</h2>
       <h2 class="both" >${this.data.speed}</h2>
     </div>
