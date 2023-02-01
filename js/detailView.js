@@ -29,7 +29,7 @@ class Detailview extends View {
       const computedStyle = window.getComputedStyle(this);
       const backgroundImage =
         computedStyle.getPropertyValue("background-image");
-      this.style.backgroundImage = `url('http://localhost/files/backgrounds/${model.pokemon.details.type1}.png')`;
+      this.style.backgroundImage = `url('https://raw.githubusercontent.com/santiagoospina21/pokedex-santy/master/img/Backgrounds/${model.pokemon.details.type1}.png')`;
     });
   }
 
@@ -45,10 +45,11 @@ class Detailview extends View {
   }
 
   generateType2() {
+    console.log(this.data.type2[0].toUpperCase() + this.data.type2.slice(1));
     if (this.data.type2) {
       return `<img class="card__body__type2" alt="Type 2" src="https://raw.githubusercontent.com/santiagoospina21/pokedex-santy/master/img/symbols/${
         this.data.type2[0].toUpperCase() + this.data.type2.slice(1)
-      }}">`;
+      }}.png">`;
     } else return "";
   }
 
@@ -79,9 +80,9 @@ class Detailview extends View {
         this.data.image
       }" >
       </div> 
-      <div class="card__body__type1"><img class="card__body__type1" alt="Type 1" src="https://github.com/santiagoospina21/pokedex-santy/blob/master/img/symbols/${
+      <div class="card__body__type1"><img class="card__body__type1" alt="Type 1" src="https://raw.githubusercontent.com/santiagoospina21/pokedex-santy/master/img/symbols/${
         this.data.type1[0].toUpperCase() + this.data.type1.slice(1)
-      }">
+      }.png">
       
       ${this.generateType2()}
 
