@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokedex</title>
+    <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/pokemon-fire-red" rel="stylesheet">   
+
+    <link rel="icon" href="/img/Pokebola.png" type="image/x-icon">
+
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/pokemon-solid');
+</style>
+<style>
+  @import url('https://fonts.cdnfonts.com/css/pokemon-fire-red');
+</style>
+    <link rel ="stylesheet" href="style.css">
+    <script defer type="module" src="js/controller.js"></script>
+   
+  </head>
+
+  <body>
+    <div class="background-image-container">   </div>
+  
+    <div class="container">
+    
+        <header class="header"><h1>Welcome to the  Pokedex</h1>
+  <img  class="header__logo"alt="Logo" src="/img/Logo.png" >
+        </header>
+
+        <article class="container__info">
+          <div class="container__form">
+            <form class="form">
+            <input class="search__input"
+              type ="text"
+              class="form__input"
+              placeholder="Search a Pokemon">
+            </form>
+            <a class="poke__btn" href="#">
+              <img src="/img/Pokebola.png" width="35px" alt="Button">
+              
+            </a>
+
+            <select id="select1">
+              <option value="default" >Filter...</option>
+              <option value="opcion1">Type</option>
+              <option value="opcion2">Region</option>
+            </select>
+            
+            <select id="select2">
+            
+            </select>
+            
+           
+            
+            <h2>Gotta catch'Em All!</h2>
+          
+           </div>
+          
+          <div class="container__pokes" >  
+           <!--  <div  class="container__pokes__num"><h3 class="names">#01 Bulbasaur</h3><img class="poke" alt="poke_1" src=" https://img.pokemondb.net/sprites/black-white/normal/bulbasaur.png" > </div>
+            <div  class="container__pokes__num"><h3 class="names">#06 Charmander</h3><img class="poke" alt="poke_1" src=" https://img.pokemondb.net/sprites/black-white/normal/charmander.png" > </div>
+            <div  class="container__pokes__num"><h3 class="names">#143 Snorlax</h3><img class="poke" alt="poke_1" src=" https://img.pokemondb.net/sprites/black-white/normal/snorlax.png" ></div>
+            <div  class="container__pokes__num"><h3 class="names">#104 Cubone</h3><img class="poke" alt="poke_1" src=" https://img.pokemondb.net/sprites/black-white/normal/cubone.png" ></div>
+            <div  class="container__pokes__num"><h3 class="names">#133 Eevee</h3><img class="poke" alt="poke_1" src=" https://img.pokemondb.net/sprites/black-white/normal/eevee.png" ></div>
+            <div  class="container__pokes__num"><h3 class="names">#134 Vaporeon</h3><img class="poke" alt="poke_1" src=" https://img.pokemondb.net/sprites/black-white/normal/vaporeon.png" ></div>
+            <div  class="container__pokes__num"><h3 class="names">#384 Rayquaza</h3><img class="poke" alt="poke_1" src=" https://img.pokemondb.net/sprites/black-white/normal/rayquaza.png" ></div>
+            <div  class="container__pokes__num"><h3 class="names">#197 Umbreon</h3><img class="poke" alt="poke_1" src=" https://img.pokemondb.net/sprites/black-white/normal/umbreon.png" ></div> -->
+          </div>
+          <div class="pagination">
+            <a class="preview"  href="#">&laquo;</a>
+            <a  class="first active" data-value="0" href="#">1</a>
+            <a class="second " data-value="8"href="#">2</a>
+            <a  class="third" data-value="16"href="#">3</a>
+            <a class="fourth"data-value="24" href="#">4</a>
+            <a class="fifth" data-value="32"href="#">5</a>
+            <a  class="sixth"data-value="38"href="#">6</a>
+            <a class="next" href="#">&raquo;</a>
+          </div>
+        </article>
+        
+     <main class="container__search">
+     <div class="pokeball"></div>
+       <!-- <article class="card">
+
+        <div class="card__header">
+          <h1 class="card__header__title">Charizard <span>#06</span></h1>
+        <h3 class="card__header__text">Volador/Fuego</h3>
+        <button class="card__header__button"><img src="img/shiny.png" alt="shiny " width="40px"> </button>
+        
+        </div>
+        
+       <div class="card__body">
+        <div class="card__body__content">
+          <img class="card__body__image" alt="Pokemon_Image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png">
+          </div> 
+          <div class="card__body__type1"><img class="card__body__type1" alt="Type 1" src="/img/symbols/Bug.png">
+            <img class="card__body__type2" alt="Type 2" src="/img/symbols/Ghost.png">
+        </div>
+       </div>
+
+       <div class="card__footer">
+        <div class="card__footer__stat">
+          <img class="card__footer__stat" alt="Pokemon_Ataque" src="/img/hp.png" width="30px">
+          <h2 class="card__footer__stat">Hp</h2>
+          <h2 class="both">95</h2>
+        </div>
+        
+        <div class="card__footer__stat">
+          <img class="card__footer__stat" alt="Pokemon_Ataque" src="/img/Ataque.png" width="30px">
+          <h2 class="card__footer__stat">Atk</h2>
+          <h2 class="both">120</h2>
+        </div>
+        
+        <div class="card__footer__stat">
+          <img class="card__footer__stat" alt="Pokemon_Defensa" src="/img/Escudo.png" width="30px">
+          <h2 class="card__footer__stat">Def</h2>
+          <h2 class="both">80</h2>
+        </div>
+
+        <div class="card__footer__stat">
+          <img class="card__footer__stat" alt="Pokemon_Ataque_Especial" src="/img/baculo.png" width="60px">
+          <h2 class="card__footer__stat">Atk. Spe</h2>
+          <h2 class="both" >100 </h2>
+        </div>
+
+        <div class="card__footer__stat">
+          <img class="card__footer__stat" alt="Pokemon_Defensa_Especial" src="/img/Capa.png" width="30px">
+          <h2 class="card__footer__stat"  >Def. Spe</h2>
+          <h2 class="both" >50</h2>
+        </div>
+
+        <div class="card__footer__stat">
+          <img class="card__footer__stat" alt="Pokemon_Defensa_Especial" src="/img/Velocidad.png" width="30px">
+          <h2 class="card__footer__stat">Spe</h2>
+          <h2 class="both" >60</h2>
+        </div>
+        <div >
+
+        </div>
+       </div>
+      </article> -->
+    </main>
+     
+        <footer class="footer">Santiago Ospina &copy;2023</footer>
+  </body>
+</html>
+
+
+
