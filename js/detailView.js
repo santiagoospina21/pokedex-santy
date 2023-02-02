@@ -9,6 +9,7 @@ class Detailview extends View {
   data1;
   btnShiny;
   message = "There was a problem loading data";
+  state = false;
 
   addHandlerDetail(handler) {
     this.containerElement.addEventListener("click", function (e) {
@@ -37,10 +38,16 @@ class Detailview extends View {
     this.btnShiny = document.querySelector(".card__header__button");
 
     this.btnShiny.addEventListener("click", function () {
-      console.log(model.pokemon.details.image);
-      model.pokemon.details.image = model.pokemon.details.shiny;
-      console.log(model.pokemon.details.image);
-      handler();
+      console.log(this);
+      this.state = !this.state;
+      console.log(this.state);
+      if (this.state) {
+        model.pokemon.details.image = model.pokemon.details.shiny;
+        handler();
+      } else {
+        model.pokemon.details.image = model.pokemon.details.image;
+        handler();
+      }
     });
   }
 
