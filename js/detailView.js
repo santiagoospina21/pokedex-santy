@@ -45,11 +45,10 @@ class Detailview extends View {
   }
 
   generateType2() {
-    console.log(this.data.type2[0].toUpperCase() + this.data.type2.slice(1));
     if (this.data.type2) {
       return `<img class="card__body__type2" alt="Type 2" src="https://raw.githubusercontent.com/santiagoospina21/pokedex-santy/master/img/symbols/${
         this.data.type2[0].toUpperCase() + this.data.type2.slice(1)
-      }}.png">`;
+      }}">`;
     } else return "";
   }
 

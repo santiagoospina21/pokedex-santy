@@ -41,7 +41,5 @@ export default class View {
 </a>`;
     this.parentElement.innerHTML = "";
     this.parentElement.insertAdjacentHTML("afterbegin", markup);
-
-    this.parentElement.stlye.color = red;
   }
 }
