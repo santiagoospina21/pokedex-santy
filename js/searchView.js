@@ -6,7 +6,6 @@ class SearchView extends View {
   formElement = document.querySelector(".form");
   btnPoke = document.querySelector(".poke__btn");
   headerElement = document.querySelector(".header");
-  X;
 
   message = "Wrong Pokemon. Try again!";
 
@@ -14,10 +13,14 @@ class SearchView extends View {
     this.formElement.addEventListener("submit", function (e) {
       e.preventDefault();
       handler();
+      this.children[0].value = "";
+      this.children[0].blur();
     });
 
     this.btnPoke.addEventListener("click", function () {
       handler();
+      this.previousElementSibling.children[0].value = "";
+      this.previousElementSibling.children[0].blur();
     });
   }
 

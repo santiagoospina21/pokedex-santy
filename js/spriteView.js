@@ -3,6 +3,7 @@ import * as model from "./model";
 class spriteView extends View {
   data;
   parentElement = document.querySelector(".container__pokes");
+  headerElement = document.querySelector(".header");
 
   select1 = document.getElementById("select1");
   select2 = document.getElementById("select2");
@@ -17,6 +18,8 @@ class spriteView extends View {
         select2.innerHTML = "";
       }
     });
+
+    this.headerElement.addEventListener("click", handler);
   }
 }
 
