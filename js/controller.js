@@ -72,6 +72,7 @@ const controlPokemonDetail = async function () {
 
     //4)Shiny control
     Detailview.addHandlerShiny(controlShiny);
+    return;
   } catch (err) {
     Detailview.renderError();
   }

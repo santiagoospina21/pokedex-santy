@@ -1,15 +1,18 @@
 import spriteView from "./spriteView";
 import * as model from "./model";
 import View from "./View";
+import * as controller from "./controller";
+
+let counter = 0;
 
 class Detailview extends View {
   parentElement = document.querySelector(".container__search");
   containerElement = document.querySelector(".container__pokes");
   cardElement;
   data1;
-  btnShiny;
+  btnShiny = document.querySelector(".card__header__button");
+
   message = "There was a problem loading data";
-  state = false;
 
   addHandlerDetail(handler) {
     this.containerElement.addEventListener("click", function (e) {
@@ -35,21 +38,67 @@ class Detailview extends View {
   }
 
   addHandlerShiny(handler) {
-    this.btnShiny = document.querySelector(".card__header__button");
-
+    let image = model.pokemon.details.image;
+    this.secondClick();
     this.btnShiny.addEventListener("click", function () {
-      console.log(this);
-      this.state = !this.state;
-      console.log(this.state);
-      if (this.state) {
+      counter++;
+
+      if (counter === 1) {
+        console.log("first event");
         model.pokemon.details.image = model.pokemon.details.shiny;
+        console.log(model.pokemon.details.image);
+
+        handler();
+      } else if (counter === 2) {
+        console.log("second event");
+        model.pokemon.details.image = image;
+        console.log(model.pokemon.details.image);
         handler();
       } else {
-        model.pokemon.details.image = model.pokemon.details.image;
-        handler();
+        counter = 1;
+        console.log("first event");
+        model.pokemon.details.image = model.pokemon.details.shiny;
+        console.log(model.pokemon.details.image);
       }
     });
   }
+
+  secondClick() {
+    this.btnShiny.addEventListener("click", function () {
+      if (counter === 2) {
+        console.log("second event");
+        model.pokemon.details.image = image;
+        console.log(model.pokemon.details.image);
+      }
+    });
+  }
+
+  /* addHandlerShiny() {
+    this.btnShiny.addEventListener("click", function () {
+      if (model.pokemon.state === true) {
+        model.toShiny();
+        console.log(model.pokemon.state);
+        console.log("si");
+
+        this.addEventListener("click", function () {
+          if (model.pokemon.state === false) {
+            model.toDefault();
+            console.log(model.pokemon.state);
+            console.log("no");
+          }
+        });
+      }
+    });
+  } */
+
+  /* addHandlerNoShiny(handler) {
+    this.btnShiny.addEventListener("click", function () {
+      if (model.pokemon.state === false) {
+        model.toDefault();
+        handler();
+      }
+    });
+  } */
 
   generateType2() {
     if (this.data.type2) {

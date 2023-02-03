@@ -33,10 +33,10 @@ export default class View {
 
   renderError(message = this.message) {
     const markup = ` <a class="poke__message1" href="#">
-    <img src="http://localhost/files/Pokebola.jpg" width="35px" alt="Button">
+    <img src="https://raw.githubusercontent.com/santiagoospina21/pokedex-santy/master/img/Pokebola.png" width="35px" alt="Button">
     
   </a><h3>${message} </h3> <a class="poke__message2" href="#">
-  <img src="http://localhost/files/Pokebola.jpg" width="35px" alt="Button">
+  <img src="https://raw.githubusercontent.com/santiagoospina21/pokedex-santy/master/img/Pokebola.png" width="35px" alt="Button">
   
 </a>`;
     this.parentElement.innerHTML = "";

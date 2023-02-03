@@ -67,6 +67,7 @@ export const loadDataPokemon = async function (url) {
     pokemon.details = {
       name: data.name,
       id: data.id,
+      currentImage: "",
       image: data.sprites["other"]["official-artwork"].front_default,
       shiny: data.sprites["other"]["official-artwork"].front_shiny,
       hp: data.stats[0].base_stat,
@@ -218,4 +219,17 @@ export const loadPokeByRegion = async function () {
   } catch (err) {
     throw err;
   }
+};
+
+//Shiny change
+
+export const toShiny = async function () {
+  pokemon.details.currentImage = pokemon.details.image;
+  pokemon.details.image = pokemon.details.shiny;
+  pokemon.state = false;
+};
+
+export const toDefault = async function () {
+  pokemon.details.image = pokemon.details.currentImage;
+  pokemon.state = true;
 };
