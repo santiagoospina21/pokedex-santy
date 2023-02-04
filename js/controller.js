@@ -39,7 +39,7 @@ const controlPokemonSprite = async function () {
 const controlPagination = async function (page) {
   if (select1.value === "opcion1") return;
   if (select1.value === "opcion2") return;
-  console.log(page);
+
   //1 Change page
   /*  model.changePage(); */
   //2) Charge new array pokemon sprite (next 8 poke)

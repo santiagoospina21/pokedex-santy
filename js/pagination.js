@@ -28,15 +28,18 @@ class Pagination extends View {
     let count = 0;
     let currentPage = 0;
 
-    /* window.addEventListener("click", function (e) {
+    window.addEventListener("click", function (e) {
       const target = e.target;
-      elements.forEach((el) => {
+      elements.forEach((el, i) => {
         if (el === target) {
           handler(Number(target.dataset.value) + currentPage);
+
+          if (activeIndex === i) {
+            el.classList.add("active");
+          } else el.classList.remove("active");
         }
       });
     });
- */
 
     //Reset when changed to default option
     this.select1.addEventListener("change", function () {
@@ -53,10 +56,14 @@ class Pagination extends View {
       }
     });
 
+    let x = currentPage;
+
     this.nextElement.addEventListener("click", function () {
       if (select1.value === "opcion1") return;
       if (select1.value === "opcion2") return;
       if (model.pokemon.page < 892) {
+        console.log(currentPage);
+
         currentPage = model.nextPage();
         handler(currentPage);
 
