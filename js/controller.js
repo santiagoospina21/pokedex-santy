@@ -40,6 +40,7 @@ const controlPagination = async function (page) {
   if (select1.value === "opcion1") return;
   if (select1.value === "opcion2") return;
 
+  /*  spriteView.renderSpinner(); */
   //1 Change page
   /*  model.changePage(); */
   //2) Charge new array pokemon sprite (next 8 poke)
@@ -129,11 +130,10 @@ const controlSearchByRegion = async function () {
   );
 };
 
-const paginationFilter = async function () {
+const paginationFilter = async function (page) {
+  spriteView.renderSpinner();
   //1)Render pokemon (Filter)
-  FilterView.renderSprite(
-    model.pokemon.sprites.slice(model.pokemon.page, 8 + model.pokemon.page)
-  );
+  FilterView.renderSprite(model.pokemon.sprites.slice(page, 8 + page));
 };
 
 const init = function () {

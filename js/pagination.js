@@ -27,19 +27,7 @@ class Pagination extends View {
     let activeIndex = 0;
     let count = 0;
     let currentPage = 0;
-
-    window.addEventListener("click", function (e) {
-      const target = e.target;
-      elements.forEach((el, i) => {
-        if (el === target) {
-          handler(Number(target.dataset.value) + currentPage);
-
-          if (activeIndex === i) {
-            el.classList.add("active");
-          } else el.classList.remove("active");
-        }
-      });
-    });
+    let pageGroup = 0;
 
     //Reset when changed to default option
     this.select1.addEventListener("change", function () {
@@ -50,31 +38,58 @@ class Pagination extends View {
             el.classList.remove("active");
           }
         });
+        elements.forEach((el) => el.classList.remove("hidden"));
         elements[0].classList.add("active");
         count = 0;
         activeIndex = 0;
+        pageGroup = 0;
+        currentPage = 0;
       }
     });
+    //Pagination numbers
+    window.addEventListener("click", function (e) {
+      const target = e.target;
 
-    let x = currentPage;
+      elements.forEach((el, i) => {
+        if (el === target) {
+          elements.forEach((e) => e.classList.remove("active"));
+          handler(i * 8 + pageGroup);
+
+          el.classList.add("active");
+          activeIndex = i;
+          count = i;
+          currentPage = el.innerHTML * 8 - 8;
+          console.log(currentPage);
+        }
+      });
+    });
+
+    window.addEventListener("load", function () {
+      elements[0].classList.add("active");
+      count = 0;
+      activeIndex = 0;
+    });
 
     this.nextElement.addEventListener("click", function () {
       if (select1.value === "opcion1") return;
       if (select1.value === "opcion2") return;
-      if (model.pokemon.page < 892) {
+      if (currentPage < 904) {
+        currentPage = currentPage + 8;
         console.log(currentPage);
-
-        currentPage = model.nextPage();
         handler(currentPage);
 
         activeIndex = (activeIndex + 1) % elements.length;
+
         count += 1;
 
         elements.forEach((el, i) => {
           if (count % 6 === 0) {
             elements.forEach((el) => {
               el.innerHTML = Number(el.innerHTML) + 1;
-              if (el.innerHTML > Math.ceil(892 / 8)) el.classList.add("hidden");
+              pageGroup += 1.334;
+              el.dataset.value = Number(el.dataset.value) + 1.334;
+
+              if (el.innerHTML > Math.ceil(912 / 8)) el.classList.add("hidden");
             });
           }
 
@@ -88,8 +103,9 @@ class Pagination extends View {
     this.previewElement.addEventListener("click", function () {
       if (select1.value === "opcion1") return;
       if (select1.value === "opcion2") return;
-      if (model.pokemon.page > 0) {
-        currentPage = model.previewPage();
+      if (currentPage > 0) {
+        currentPage = currentPage - 8;
+        console.log(currentPage);
         handler(currentPage);
 
         count -= 1;
@@ -104,6 +120,7 @@ class Pagination extends View {
           if ((count + 1) % 6 === 0) {
             elements.forEach((el) => {
               el.innerHTML = Number(el.innerHTML) - 1;
+              pageGroup -= 1.334;
             });
           }
 

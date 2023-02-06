@@ -67,6 +67,7 @@ class FilterView extends View {
     let activeIndex = 0;
     let count = 0;
     let currentPage = 0;
+    let pageGroup = 0;
 
     //RESET WHEN CHANGED TO OTHER OPTION
     [this.select1, this.select2].forEach((el) => {
@@ -83,15 +84,42 @@ class FilterView extends View {
           elements.forEach((el) => el.classList.remove("hidden"));
           count = 0;
           activeIndex = 0;
+          pageGroup = 0;
+          currentPage = 0;
         }
       });
     });
 
+    //Pagination numbers
+    window.addEventListener("click", function (e) {
+      const target = e.target;
+
+      elements.forEach((el, i) => {
+        if (el === target) {
+          elements.forEach((e) => e.classList.remove("active"));
+          handler(i * 8 + pageGroup);
+
+          el.classList.add("active");
+          activeIndex = i;
+          count = i;
+          currentPage = el.innerHTML * 8 - 8;
+          console.log(currentPage);
+        }
+      });
+    });
+
+    window.addEventListener("load", function () {
+      elements[0].classList.add("active");
+      count = 0;
+      activeIndex = 0;
+      pageGroup = 0;
+    });
+
     //NEXT ELEMENT
     this.nextElement.addEventListener("click", function () {
-      if (model.pokemon.page < model.pokemon.numPages - 8) {
+      if (currentPage < model.pokemon.numPages - 8) {
         //Current Page and Handler
-        currentPage = model.nextPage();
+        currentPage = currentPage + 8;
         handler(currentPage);
         //Variables
         activeIndex = (activeIndex + 1) % elements.length;
@@ -101,6 +129,7 @@ class FilterView extends View {
           if (count % 6 === 0) {
             elements.forEach((el) => {
               el.innerHTML = Number(el.innerHTML) + 1;
+              pageGroup += 1.334;
               //Hidden the rest of numbers page (At the end)
               if (el.innerHTML > Math.ceil(model.pokemon.numPages / 8))
                 el.classList.add("hidden");
@@ -117,9 +146,9 @@ class FilterView extends View {
     //PREVIEW ELEMENT
     this.previewElement.addEventListener("click", function () {
       if (select1.value === "opcion1" || select1.value === "opcion2")
-        if (model.pokemon.page > 0) {
+        if (currentPage > 0) {
           //Current Page and Handler
-          currentPage = model.previewPage();
+          currentPage = currentPage - 8;
           handler(currentPage);
           //Variables
           count -= 1;
@@ -135,6 +164,7 @@ class FilterView extends View {
             if ((count + 1) % 6 === 0) {
               elements.forEach((el) => {
                 el.innerHTML = Number(el.innerHTML) - 1;
+                pageGroup -= 1.334;
               });
             }
             //Active Class

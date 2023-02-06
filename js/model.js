@@ -26,15 +26,17 @@ export const pokemonSprite = async function (url) {
 
     const data = await Promise.all(requests);
 
-    pokemon.sprites = data.map((el) => {
-      if (el.id <= 906) {
-        return {
-          name: el.name,
-          id: el.id,
-          image: el.sprites.front_default,
-        };
-      } else return;
-    });
+    pokemon.sprites = data
+      .map((el) => {
+        if (el.id <= 905) {
+          return {
+            name: el.name,
+            id: el.id,
+            image: el.sprites.front_default,
+          };
+        } else return;
+      })
+      .filter((el) => el !== undefined);
   } catch (err) {
     throw err;
   }
