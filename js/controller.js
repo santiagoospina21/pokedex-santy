@@ -40,24 +40,15 @@ const controlPagination = async function (page) {
   if (select1.value === "opcion1") return;
   if (select1.value === "opcion2") return;
 
-  /*  spriteView.renderSpinner(); */
-  //1 Change page
-  /*  model.changePage(); */
-  //2) Charge new array pokemon sprite (next 8 poke)
+  //1) Charge new array pokemon sprite (next 8 poke)
   if (model.pokemon.page < 904) {
     await model.pokemonPage(
       `https://pokeapi.co/api/v2/pokemon?offset=${page}jajaj&limit=8`
     );
-    /* await model.pokemonSprite(
-      `https://pokeapi.co/api/v2/pokemon?offset=0jajaj&limit=905`
-    ); */
-  } else;
+  }
 
-  //3) Render NEW results
-
+  //2) Render NEW results
   spriteView.renderSprite(model.pokemon.sprites);
-
-  //4) Render NEW pagination buttons
 };
 
 const controlPokemonDetail = async function () {
@@ -112,9 +103,7 @@ const controlSearchByType = async function () {
   await model.loadPokebyType();
 
   //2)Render pokemon by type
-  FilterView.renderSprite(
-    model.pokemon.sprites.slice(model.pokemon.page, 8 + model.pokemon.page)
-  );
+  FilterView.renderSprite(model.pokemon.sprites.slice(0, 8));
 };
 
 const controlSearchByRegion = async function () {
@@ -125,9 +114,7 @@ const controlSearchByRegion = async function () {
   await model.loadPokeByRegion();
 
   //2)Render pokemon by Region
-  FilterView.renderSprite(
-    model.pokemon.sprites.slice(model.pokemon.page, 8 + model.pokemon.page)
-  );
+  FilterView.renderSprite(model.pokemon.sprites.slice(0, 8));
 };
 
 const paginationFilter = async function (page) {

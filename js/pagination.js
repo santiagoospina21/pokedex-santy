@@ -38,8 +38,8 @@ class Pagination extends View {
             el.classList.remove("active");
           }
         });
-        elements.forEach((el) => el.classList.remove("hidden"));
         elements[0].classList.add("active");
+        elements.forEach((el) => el.classList.remove("hidden"));
         count = 0;
         activeIndex = 0;
         pageGroup = 0;
@@ -59,7 +59,6 @@ class Pagination extends View {
           activeIndex = i;
           count = i;
           currentPage = el.innerHTML * 8 - 8;
-          console.log(currentPage);
         }
       });
     });
@@ -74,8 +73,8 @@ class Pagination extends View {
       if (select1.value === "opcion1") return;
       if (select1.value === "opcion2") return;
       if (currentPage < 904) {
-        currentPage = currentPage + 8;
-        console.log(currentPage);
+        currentPage += 8;
+
         handler(currentPage);
 
         activeIndex = (activeIndex + 1) % elements.length;
@@ -87,7 +86,6 @@ class Pagination extends View {
             elements.forEach((el) => {
               el.innerHTML = Number(el.innerHTML) + 1;
               pageGroup += 1.334;
-              el.dataset.value = Number(el.dataset.value) + 1.334;
 
               if (el.innerHTML > Math.ceil(912 / 8)) el.classList.add("hidden");
             });
@@ -104,8 +102,7 @@ class Pagination extends View {
       if (select1.value === "opcion1") return;
       if (select1.value === "opcion2") return;
       if (currentPage > 0) {
-        currentPage = currentPage - 8;
-        console.log(currentPage);
+        currentPage -= 8;
         handler(currentPage);
 
         count -= 1;

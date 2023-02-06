@@ -7,14 +7,10 @@ import { async } from "regenerator-runtime";
 export const pokemon = {
   sprites: [],
   page: 0,
-  currentPoke: "",
   details: {},
-  pokeName: "",
   numPages: 0,
   state: true,
 };
-
-/* let urlBase = `https://pokeapi.co/api/v2/pokemon?offset=${pokemon.page}jajaj&limit=8`; */
 
 export const pokemonSprite = async function (url) {
   try {
@@ -44,20 +40,8 @@ export const pokemonSprite = async function (url) {
 
 //PAGINATION
 
-export const nextPage = function () {
-  pokemon.page += 8;
-  return pokemon.page;
-};
-
-export const previewPage = function () {
-  pokemon.page -= 8;
-  return pokemon.page;
-};
-
 export const pokemonPage = async function (url) {
   await pokemonSprite(url);
-
-  console.log(pokemon.sprites);
 };
 
 //DATA DETAIL POKEMON

@@ -98,12 +98,10 @@ class FilterView extends View {
         if (el === target) {
           elements.forEach((e) => e.classList.remove("active"));
           handler(i * 8 + pageGroup);
-
           el.classList.add("active");
           activeIndex = i;
           count = i;
           currentPage = el.innerHTML * 8 - 8;
-          console.log(currentPage);
         }
       });
     });
@@ -117,9 +115,10 @@ class FilterView extends View {
 
     //NEXT ELEMENT
     this.nextElement.addEventListener("click", function () {
+      if (select1.value === "default") return;
       if (currentPage < model.pokemon.numPages - 8) {
         //Current Page and Handler
-        currentPage = currentPage + 8;
+        currentPage += 8;
         handler(currentPage);
         //Variables
         activeIndex = (activeIndex + 1) % elements.length;
@@ -148,7 +147,7 @@ class FilterView extends View {
       if (select1.value === "opcion1" || select1.value === "opcion2")
         if (currentPage > 0) {
           //Current Page and Handler
-          currentPage = currentPage - 8;
+          currentPage -= 8;
           handler(currentPage);
           //Variables
           count -= 1;
@@ -160,7 +159,6 @@ class FilterView extends View {
           }
           //Rest -6 to numbers pagination
           elements.forEach((el, i) => {
-            console.log(count);
             if ((count + 1) % 6 === 0) {
               elements.forEach((el) => {
                 el.innerHTML = Number(el.innerHTML) - 1;
