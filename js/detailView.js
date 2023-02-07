@@ -1,7 +1,5 @@
-import spriteView from "./spriteView";
 import * as model from "./model";
 import View from "./View";
-import * as controller from "./controller";
 
 let counter = 0;
 
@@ -20,7 +18,7 @@ class Detailview extends View {
       if (!data) return;
       const { value } = data.dataset;
       model.pokemon.currentPoke = value;
-
+      counter = 0;
       handler();
     });
   }
@@ -38,67 +36,26 @@ class Detailview extends View {
   }
 
   addHandlerShiny(handler) {
-    let image = model.pokemon.details.image;
-    this.secondClick();
     this.btnShiny.addEventListener("click", function () {
       counter++;
 
       if (counter === 1) {
-        console.log("first event");
-        model.pokemon.details.image = model.pokemon.details.shiny;
-        console.log(model.pokemon.details.image);
-
+        model.pokemon.details.currentImage = model.pokemon.details.shiny;
         handler();
       } else if (counter === 2) {
-        console.log("second event");
-        model.pokemon.details.image = image;
-        console.log(model.pokemon.details.image);
+        model.pokemon.details.currentImage = model.pokemon.details.image;
         handler();
       } else {
         counter = 1;
-        console.log("first event");
-        model.pokemon.details.image = model.pokemon.details.shiny;
-        console.log(model.pokemon.details.image);
-      }
-    });
-  }
-
-  secondClick() {
-    this.btnShiny.addEventListener("click", function () {
-      if (counter === 2) {
-        console.log("second event");
-        model.pokemon.details.image = image;
-        console.log(model.pokemon.details.image);
-      }
-    });
-  }
-
-  /* addHandlerShiny() {
-    this.btnShiny.addEventListener("click", function () {
-      if (model.pokemon.state === true) {
-        model.toShiny();
-        console.log(model.pokemon.state);
-        console.log("si");
-
-        this.addEventListener("click", function () {
-          if (model.pokemon.state === false) {
-            model.toDefault();
-            console.log(model.pokemon.state);
-            console.log("no");
-          }
-        });
-      }
-    });
-  } */
-
-  /* addHandlerNoShiny(handler) {
-    this.btnShiny.addEventListener("click", function () {
-      if (model.pokemon.state === false) {
-        model.toDefault();
+        model.pokemon.details.currentImage = model.pokemon.details.shiny;
         handler();
       }
     });
-  } */
+
+    counter == 1
+      ? (this.btnShiny.style.backgroundColor = "#e7fa7e")
+      : (this.btnShiny.style.backgroundColor = "whitesmoke");
+  }
 
   generateType2() {
     if (this.data.type2) {
@@ -114,8 +71,6 @@ class Detailview extends View {
     } else return "";
   }
   generateMarkup() {
-    console.log(this.data);
-
     return `<article class="card">
 
     <div class="card__header">
@@ -132,7 +87,7 @@ class Detailview extends View {
    <div class="card__body">
     <div class="card__body__content">
       <img class="card__body__image" alt="Pokemon_Image" src="${
-        this.data.image
+        this.data.currentImage === "" ? this.data.image : this.data.currentImage
       }" >
       </div> 
       <div class="card__body__type1"><img class="card__body__type1" alt="Type 1" src="https://raw.githubusercontent.com/santiagoospina21/pokedex-santy/master/img/symbols/${

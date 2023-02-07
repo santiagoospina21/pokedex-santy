@@ -9,7 +9,6 @@ export const pokemon = {
   page: 0,
   details: {},
   numPages: 0,
-  state: true,
 };
 
 export const pokemonSprite = async function (url) {
@@ -205,17 +204,4 @@ export const loadPokeByRegion = async function () {
   } catch (err) {
     throw err;
   }
-};
-
-//Shiny change
-
-export const toShiny = async function () {
-  pokemon.details.currentImage = pokemon.details.image;
-  pokemon.details.image = pokemon.details.shiny;
-  pokemon.state = false;
-};
-
-export const toDefault = async function () {
-  pokemon.details.image = pokemon.details.currentImage;
-  pokemon.state = true;
 };

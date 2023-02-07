@@ -1,19 +1,15 @@
-"use-stric";
-
 import "core-js/stable";
 import { async } from "regenerator-runtime";
 import "regenerator-runtime/runtime";
 
 import { getJSON } from "./helpers";
 import * as model from "./model";
-import spriteView from "./spriteView.js";
+import SpriteView from "./SpriteView.js";
 import Pagination from "./pagination";
 import Detailview from "./detailView";
 import SearchView from "./searchView";
 import FilterView from "./filterView";
 import { urlBase, urlByName } from "./config";
-
-import searchView from "./searchView";
 
 /**
  * 1. Esten los primeros 8 pokemons renderizados en la parte izquierda de manera inicial
@@ -26,13 +22,13 @@ import searchView from "./searchView";
 const controlPokemonSprite = async function () {
   try {
     //0) Render Spinner
-    spriteView.renderSpinner();
+    SpriteView.renderSpinner();
     //1) Charged sprites info
     await model.pokemonSprite(urlBase);
     //2) Render sprites
-    spriteView.renderSprite(model.pokemon.sprites);
+    SpriteView.renderSprite(model.pokemon.sprites);
   } catch (err) {
-    spriteView.renderError();
+    SpriteView.renderError();
   }
 };
 
@@ -48,7 +44,7 @@ const controlPagination = async function (page) {
   }
 
   //2) Render NEW results
-  spriteView.renderSprite(model.pokemon.sprites);
+  SpriteView.renderSprite(model.pokemon.sprites);
 };
 
 const controlPokemonDetail = async function () {
@@ -62,8 +58,9 @@ const controlPokemonDetail = async function () {
     //3) Change backgrounds
     Detailview.changePokeBackground();
 
-    //4)Shiny control
+    //4) Shiny control
     Detailview.addHandlerShiny(controlShiny);
+
     return;
   } catch (err) {
     Detailview.renderError();
@@ -73,8 +70,10 @@ const controlPokemonDetail = async function () {
 const controlShiny = async function () {
   //1) Render Shiny Sprite
   Detailview.renderSprite(model.pokemon.details);
-  //2)Change backgrounds
+  //2) Change backgrounds
   Detailview.changePokeBackground();
+  //3) Shiny control
+  Detailview.addHandlerShiny(controlShiny);
 };
 
 const controlSearchByName = async function () {
@@ -118,13 +117,13 @@ const controlSearchByRegion = async function () {
 };
 
 const paginationFilter = async function (page) {
-  spriteView.renderSpinner();
+  SpriteView.renderSpinner();
   //1)Render pokemon (Filter)
   FilterView.renderSprite(model.pokemon.sprites.slice(page, 8 + page));
 };
 
 const init = function () {
-  spriteView.addHandlerRender(controlPokemonSprite);
+  SpriteView.addHandlerRender(controlPokemonSprite);
   Pagination.addHandlerPage(controlPagination);
   Detailview.addHandlerDetail(controlPokemonDetail);
   SearchView.addHandlerSearch(controlSearchByName);
