@@ -4,7 +4,7 @@ import "regenerator-runtime/runtime";
 
 import { getJSON } from "./helpers";
 import * as model from "./model";
-import SpriteView from "./SpriteView.js";
+import SpriteView from "./spriteView.js";
 import Pagination from "./pagination";
 import Detailview from "./detailView";
 import SearchView from "./searchView";
