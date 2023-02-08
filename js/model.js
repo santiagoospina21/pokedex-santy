@@ -200,7 +200,6 @@ export const loadPokeByRegion = async function () {
       };
     });
     pokemon.numPages = Math.trunc(pokemon.sprites.length);
-    console.log(pokemon.numPages);
   } catch (err) {
     throw err;
   }

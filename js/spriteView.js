@@ -18,8 +18,6 @@ class spriteView extends View {
         select2.innerHTML = "";
       }
     });
-
-    this.headerElement.addEventListener("click", handler);
   }
 }
 
